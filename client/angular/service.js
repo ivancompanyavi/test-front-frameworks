@@ -7,7 +7,7 @@
     function TODOService($http) {
         return {
             getTODOs: function () {
-                return $http.get("mock.json");
+                return $http.get("http://localhost:3000/api/todos");
             }
         }
     }

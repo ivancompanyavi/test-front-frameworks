@@ -1,0 +1,28 @@
+<link rel="import" href="/vendor/polymer/polymer.html">
+<link rel="import" href="/vendor/core-ajax/core-ajax.html">
+<polymer-element name="todo-service" attributes="todos">
+    <template>
+        <style>
+            :host {
+                display: none;
+            }
+        </style>
+        <core-ajax id="ajax"
+            auto
+            url="http://localhost:3000/api/todos"
+            handleAs="json"
+            on-core-response="{{handleResponse}}"></core-ajax>
+
+    </template>
+    <script>
+        Polymer('todo-service', {
+            created: function(){
+                this.todos = [];
+            },
+            handleResponse: function(){
+                console.log("enviamos");
+                this.todos = this.$.ajax.response;
+            }
+        })
+    </script>
+</polymer-element>

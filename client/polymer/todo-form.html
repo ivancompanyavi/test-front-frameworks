@@ -1,0 +1,30 @@
+<link rel="import" href="/vendor/polymer/polymer.html">
+
+<polymer-element name="todo-form" attributes="submittedTodo">
+    <template>
+        <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css"/>
+        <form class="form" on-submit="{{submit}}">
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" name="author" id="author" value="{{author}}"/>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <input type="text" class="form-control" name="message" id="message" value="{{message}}"/>
+            </div>
+            <input type="submit" class="btn btn-block btn-success" value="New TODO"/>
+        </form>
+
+    </template>
+    <script>
+        Polymer('todo-form',{
+            submit: function(e){
+                e.preventDefault();
+                var todo = {author: this.author, message: this.message};
+                this.submittedTodo = todo;
+                this.author = "";
+                this.message = "";
+            }
+        });
+    </script>
+</polymer-element>

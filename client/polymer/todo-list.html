@@ -1,0 +1,25 @@
+<link rel="import" href="/vendor/polymer/polymer.html">
+
+<polymer-element name="todo-list" attributes="todos">
+    <template>
+        <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css"/>
+        <table class="table">
+            <tr>
+                <th>Author</th>
+                <th>Message</th>
+            </tr>
+            <tbody>
+                <template repeat="{{todo in todos}}">
+                    <tr>
+                        <td>{{todo.author}}</td>
+                        <td>{{todo.message}}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+
+    </template>
+    <script>
+        Polymer({});
+    </script>
+</polymer-element>

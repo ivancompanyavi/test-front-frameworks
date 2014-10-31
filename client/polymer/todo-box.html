@@ -1,0 +1,40 @@
+<link rel="import" href="/vendor/polymer/polymer.html">
+<link rel="import" href="todo-list.html">
+<link rel="import" href="todo-service.html"/>
+<link rel="import" href="todo-search.html"/>
+<link rel="import" href="todo-form.html"/>
+
+<polymer-element name="todo-box">
+    <template>
+        <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css"/>
+        <div class="col-md-4 col-md-offset-4">
+            <h1 class="text-center">TODO List</h1>
+
+            <todo-service todos="{{todosData}}"></todo-service>
+
+            <todo-search searchquery="{{query}}"></todo-search>
+            <todo-list todos="{{todos}}"></todo-list>
+            <todo-form submittedTodo="{{submittedTodo}}"></todo-form>
+        </div>
+    </template>
+    <script>
+        Polymer('todo-box',{
+            todosDataChanged: function(oldVal, newVal){
+                this.todos = this.todosData;
+            },
+            queryChanged: function(oldVal, newVal){
+                new_todos = [];
+                for(var i=0; i<this.todosData.length; i++){
+                    if(this.todosData[i].message.indexOf(newVal) !== -1){
+                        new_todos.push(this.todosData[i]);
+                    }
+                }
+                this.todos = new_todos;
+            },
+            submittedTodoChanged: function(oldVal, newVal){
+                newVal.id = this.todosData.length;
+                this.todosData.push(newVal);
+            }
+        });
+    </script>
+</polymer-element>
